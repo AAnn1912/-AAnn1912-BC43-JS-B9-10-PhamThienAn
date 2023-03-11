@@ -216,13 +216,20 @@
           <div class="modal-body">
             <form role="form">
               <div class="form-group">
+                <div class="text text-danger mx-1" id="error-Dup-user"></div>
+                <div class="text text-danger" id="error-required-user"></div>
+                <div
+                  class="text text-danger"
+                  id="error-min-max-length-user"
+                ></div>
+                <div class="text text-danger" id="error-number-user"></div>
+
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"
                       ><i class="fa fa-user"></i
                     ></span>
                   </div>
-
                   <input
                     type="text"
                     name="tk"
@@ -230,13 +237,14 @@
                     class="form-control input-sm"
                     placeholder="Tài khoản"
                   />
-                  <div class="text text-danger" id="error-Dup-user"></div>
                 </div>
 
                 <span class="sp-thongbao" id="tbTKNV"></span>
               </div>
 
               <div class="form-group">
+                <div class="text text-danger" id="error-allLetter-name"></div>
+                <div class="text text-danger" id="error-required-name"></div>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"
@@ -255,6 +263,8 @@
               </div>
 
               <div class="form-group">
+                <div class="text text-danger" id="error-email"></div>
+                <div class="text text-danger" id="error-required-email"></div>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"
@@ -274,6 +284,9 @@
               </div>
 
               <div class="form-group">
+                <div class="text text-danger" id="error-required-pass"></div>
+                <div class="text text-danger" id="error-pass"></div>
+
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"
@@ -292,6 +305,9 @@
               </div>
 
               <div class="form-group">
+                <div class="text text-danger" id="error-required-date"></div>
+                <div class="text text-danger" id="error-date"></div>
+
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"
@@ -311,6 +327,9 @@
               </div>
 
               <div class="form-group">
+                <div class="text text-danger" id="error-required-Salary"></div>
+                <div class="text text-danger" id="error-Salary"></div>
+
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"
@@ -328,6 +347,8 @@
                 <span class="sp-thongbao" id="tbLuongCB"></span>
               </div>
               <div class="form-group">
+                <div class="text text-danger" id="error-required-Pos"></div>
+                <div class="text text-danger" id="error-Pos"></div>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"
@@ -336,15 +357,17 @@
                   </div>
                   <select class="form-control" id="chucvu">
                     <option>Chọn chức vụ</option>
-                    <option>Giám đốc</option>
-                    <option>Trưởng phòng</option>
-                    <option>Nhân viên</option>
+                    <option value="3">Giám đốc</option>
+                    <option value="2">Trưởng phòng</option>
+                    <option value="1">Nhân viên</option>
                   </select>
                 </div>
 
                 <span class="sp-thongbao" id="tbChucVu"></span>
               </div>
               <div class="form-group">
+                <div class="text text-danger" id="error-required-time"></div>
+                <div class="text text-danger" id="error-time"></div>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"
@@ -395,6 +418,8 @@
     <!-- <script src="js/jquery-ui.min.js"></script> -->
     <script src="./js/jquery-ui.js"></script>
     <script src="js/datepicker.js"></script>
+    <!-- Validation -->
+    <script src="./js/Validation.js"></script>
     <!-- index -->
     <script src="js/index.js"></script>
     <!-- Wow -->
