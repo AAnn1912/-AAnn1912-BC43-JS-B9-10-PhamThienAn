@@ -62,37 +62,47 @@ document.getElementById("btnThemNV").onclick = function () {
     checked.kiemTraRong(nv.password, "error-required-pass", "Mật Khẩu") &
     checked.kiemTraRong(nv.date, "error-required-date", "Ngày vào làm") &
     checked.kiemTraRong(nv.salary, "error-required-Salary", "Lương") &
-    checked.kiemTraRong(nv.workTime, "error-required-time", "Thời gian làm");
+    checked.kiemTraRong(nv.workTime, "error-required-time", "Thời gian làm") &
+    /* length */
+    checked.kiemTraLength(
+      nv.user,
+      "error-min-max-length-user",
+      "Tài Khoản",
+      4,
+      6
+    );
 
   /* kiểu ký tự */
   valid =
     checked.kiemtraSo(nv.user, "error-number-user", "Tài Khoản") &
     checked.kiemTraKyTu(nv.name, "error-allLetter-name", "Họ tên");
-
+  if (!valid) {
+    return;
+  }
   /* định dạng mail */
   valid = checked.kiemTraEmail(nv.email, "error-email", "Email");
-
+  if (!valid) {
+    return;
+  }
   /* định dạng ngày */
   valid = checked.kiemTraDate(nv.date, "error-date", "Ngày vào làm");
-
+  if (!valid) {
+    return;
+  }
   /* định dang chức vụ */
   valid = checked.kiemtraOps(nv.position, "error-Pos", "Chức Vụ");
   var tagSelect = document.getElementById("chucvu");
   var index = tagSelect.selectedIndex;
   var Position = tagSelect.options[index].innerHTML;
   nv.position = Position;
-
+  if (!valid) {
+    return;
+  }
   /* định dạng Pass */
   valid = checked.kiemTraPass(nv.password, "error-pass", "Mật khẩu");
-
-  /* length */
-  valid = checked.kiemTraLength(
-    nv.user,
-    "error-min-max-length-user",
-    "Tài Khoản",
-    4,
-    6
-  );
+  if (!valid) {
+    return;
+  }
 
   /* Lương & giờ làm*/
   valid =
@@ -110,6 +120,8 @@ document.getElementById("btnThemNV").onclick = function () {
 
   //thêm vào mãng trống
   listNV.push(nv);
+
+  resetForm();
 
   //xuất ra giao diện
   renderTable(listNV);
@@ -153,9 +165,10 @@ function renderTable(mangNV) {
        <button class="btn btn-danger" onclick="DelNv('${
          employe.user
        }')">Xoá nhân viên</button>
-       <button class="btn btn-primary m-3" onclick="chinhSua('${
-         employe.user
-       }')">Chỉnh Sửa</button>
+       <button class="btn btn-primary m-3" data-toggle="modal"
+                    data-target="#myModal" onclick="chinhSua('${
+                      employe.user
+                    }')">Chỉnh Sửa</button>
       </td>
     </tr>
     `;
@@ -250,37 +263,47 @@ document.getElementById("btnCapNhat").onclick = function () {
       userEdit.workTime,
       "error-required-time",
       "Thời gian làm"
+    ) &
+    /* length */
+    checked.kiemTraLength(
+      userEdit.user,
+      "error-min-max-length-user",
+      "Tài Khoản",
+      4,
+      6
     );
 
   /* kiểu ký tự */
   valid =
     checked.kiemtraSo(userEdit.user, "error-number-user", "Tài Khoản") &
     checked.kiemTraKyTu(userEdit.name, "error-allLetter-name", "Họ tên");
-
+  if (!valid) {
+    return;
+  }
   /* định dạng mail */
   valid = checked.kiemTraEmail(userEdit.email, "error-email", "Email");
-
+  if (!valid) {
+    return;
+  }
   /* định dạng ngày */
   valid = checked.kiemTraDate(userEdit.date, "error-date", "Ngày vào làm");
-
+  if (!valid) {
+    return;
+  }
   /* định dang chức vụ */
   valid = checked.kiemtraOps(userEdit.position, "error-Pos", "Chức Vụ");
   var tagSelect = document.getElementById("chucvu");
   var index = tagSelect.selectedIndex;
   var Position = tagSelect.options[index].innerHTML;
   userEdit.position = Position;
-
+  if (!valid) {
+    return;
+  }
   /* định dạng Pass */
   valid = checked.kiemTraPass(userEdit.password, "error-pass", "Mật khẩu");
-
-  /* length */
-  valid = checked.kiemTraLength(
-    userEdit.user,
-    "error-min-max-length-user",
-    "Tài Khoản",
-    4,
-    6
-  );
+  if (!valid) {
+    return;
+  }
 
   /* Lương & giờ làm*/
   valid =
@@ -313,6 +336,7 @@ document.getElementById("btnCapNhat").onclick = function () {
   SaveLS(listNV);
   document.getElementById("tknv").disabled = false;
   document.getElementById("btnThemNV").disabled = false;
+  resetForm();
 };
 
 //Search
@@ -362,4 +386,15 @@ function stringToSlug(title) {
   slug = "@" + slug + "@";
   slug = slug.replace(/\@\-|\-\@|\@/gi, "");
   return slug;
+}
+
+function resetForm() {
+  document.getElementById("tknv").value = "";
+  document.getElementById("name").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("datepicker").value = "";
+  document.getElementById("luongCB").value = "";
+  document.getElementById("chucvu").value = "";
+  document.getElementById("gioLam").value = "";
 }

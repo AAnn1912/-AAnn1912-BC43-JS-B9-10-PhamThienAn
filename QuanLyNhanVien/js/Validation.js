@@ -63,9 +63,8 @@ function Validation() {
     return false;
   };
   this.kiemTraDate = function (value, idError, name) {
-    var regexDate =
-      /^(((0)[0-9])|((1)[0-2]))(\/)([0-2][0-9]|(3)[0-1])(\/)\d{4}$/i;
-    if (regexDate.test(value)) {
+    var regexDate = /(0\d{1}|1[0-2])\/([0-2]\d{1}|3[0-1])\/(19|20)\d{2}/;
+    if (!regexDate.test(value)) {
       document.getElementById(
         idError
       ).innerHTML = `${name} không hợp lệ (định dạng mm/dd/yyyy)`;
